@@ -15,7 +15,7 @@ struct Args {
 
 fn main() -> Result<()> {
     let args = Args::parse();
-    let _ = fs::create_dir_all(&args.output_dir).context("failed to create output directory");
+    fs::create_dir_all(&args.output_dir).context("failed to create output directory")?;
 
     let screens = Screen::all().context("failed to enumare screens");
     let primary = screens?.first().context("no screens found")?.to_owned();
